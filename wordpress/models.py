@@ -277,7 +277,6 @@ class Post(WordPressModel):
     excerpt = models.TextField(db_column='post_excerpt')
     content = models.TextField(db_column='post_content')
     content_filtered = models.TextField(db_column='post_content_filtered')
-    body = models.TextField()
     post_date = models.DateTimeField(db_column='post_date')
     modified = models.DateTimeField(db_column='post_modified')
 
