@@ -1,6 +1,4 @@
 from django.contrib import admin
-from django.forms import ModelForm
-from suit_redactor.widgets import RedactorWidget
 
 from wordpress.models import (
     Option, Comment, Link, Post,
@@ -28,22 +26,12 @@ class PostMetaInline(admin.TabularInline):
     model = PostMeta
 
 
-class PostForm(ModelForm):
-    class Meta:
-        widgets = {
-            'body': RedactorWidget(editor_options={'lang': 'es'})
-        }
-
-
 class PostAdmin(admin.ModelAdmin):
-    form = PostForm
     inlines = (PostMetaInline,)
     list_display = ('id', 'title', 'author', 'post_date')
     list_filter = ('status', 'post_type', 'comment_status', 'ping_status', 'author')
     search_fields = ('title',)
-    fieldsets = [
-        ('Body', {'classes': ('full-width',), 'fields': ('body',)})
-    ]
+
 
 
 class UserMetaInline(admin.TabularInline):
